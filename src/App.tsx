@@ -6,11 +6,12 @@ import SignUp from "./pages/SignUp";
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Main />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<SignUp />} />
-    </Routes>
+    <div className="w-full min-h-screen bg-bg-100 ">
+      <Routes>
+        {/* <Route path="/" element={<Main />} /> */}
+        <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
+    </div>
   );
 }
