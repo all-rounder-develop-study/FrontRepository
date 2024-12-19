@@ -12,15 +12,15 @@ export default function ProfileCard({name, part, phoneNumber, email, onLogout}: 
     return (
         <div className="w-[258px] h-full pt-[70px] pb-[32px] px-[24px] bg-[#ffffff] flex flex-col justify-between">
             <div className="w-fill flex flex-col items-center justify-center space-y-[4px]">
-                <h1 className="text-[20px] font-semibold">박호건</h1>
+                <h1 className="text-[20px] font-semibold">{name}</h1>
                 <div className="inline-block bg-[#f1f5f9] text-[12px] font-semibold rounded-lg px-[10px] py-[4px]">
-                    백엔드
+                    {part}
                 </div>
                 <p className="text-[12px] text-[#475569] text-regular">
-                    010-0000-0000
+                    {phoneNumber}
                 </p>
                 <p className="text-[12px] text-[#475569] text-regular">
-                    studyeon5512@soongsil.ac.kr
+                    {email}
                 </p>
                 <div className="h-[32px]"></div>
                 <hr className="border-t bg-[#E2E8F0] w-full h-[1px] t-[32px]" />
