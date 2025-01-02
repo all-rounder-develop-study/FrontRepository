@@ -40,7 +40,14 @@ module.exports = {
         },
         red: {
           100: "#EF4444"
-        }
+        },
+
+        primary: "#0F172A",
+
+        foreground: "#020617",
+        primary_foreground: "#F8FAFC",
+        gray_foreground: "#b3b4ba",
+        muted_foreground: "#64748B"
       }
     }
   },
