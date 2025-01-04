@@ -6,7 +6,7 @@ const weekDays = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 interface CalendarProps {
   year: number;
   month: number;
-  assignmentDates: number[];
+  assignmentDates: Date[];
   selectedDate: Date;
   onPrevMonth: () => void;
   onNextMonth: () => void;
@@ -28,7 +28,12 @@ export default function Calendar({ year, month, assignmentDates, selectedDate, o
   }
 
   function hasAssignment(date: any) {
-    return assignmentDates.includes(date);
+    return assignmentDates.some(
+      assignmentDate =>
+        assignmentDate.getFullYear() === year &&
+        assignmentDate.getMonth() === month &&
+        assignmentDate.getDate() === date
+    );
   }
 
   return (

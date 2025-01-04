@@ -2,6 +2,7 @@ import ProfileCard from "../components/main/ProfileCard";
 import AssignmentCardList from "../components/main/AssignmentCardList";
 import Calendar from "../components/main/Calendar";
 import { useState } from "react";
+import TaskCardList from "../components/main/TaskCardList";
 
 export default function Main() {
 
@@ -44,9 +45,68 @@ export default function Main() {
     setSelectedDate(date);
   }
 
-  const taskDates = [
-    1, 2, 4, 5, 7, 14, 27
+  const tasks = [
+    {
+      date: "2025-01-01",
+      description: "이번주까지 [7의 코드] 7장을 읽고 해당 이론을 활용하여 비즈니스 모델을 수립합니다. 이는 추후 프로젝트에 활용될 예정입니다",
+      onClick: () => {console.log("테스트~~");}
+    },
+    {
+      date: "2025-01-02",
+      description: "이번주까지 [7의 코드] 7장을 읽고 해당 이론을 활용하여 비즈니스 모델을 수립합니다. 이는 추후 프로젝트에 활용될 예정입니다",
+      onClick: () => {}
+    },
+    {
+      date: "2025-01-04",
+      description: "이번주까지 [7의 코드] 7장을 읽고 해당 이론을 활용하여 비즈니스 모델을 수립합니다. 이는 추후 프로젝트에 활용될 예정입니다",
+      onClick: () => {}
+    },
+    {
+      date: "2025-01-05",
+      description: "이번주까지 [7의 코드] 7장을 읽고 해당 이론을 활용하여 비즈니스 모델을 수립합니다. 이는 추후 프로젝트에 활용될 예정입니다",
+      onClick: () => {}
+    },
+    {
+      date: "2025-01-05",
+      description: "이번주까지 [7의 코드] 7장을 읽고 해당 이론을 활용하여 비즈니스 모델을 수립합니다. 이는 추후 프로젝트에 활용될 예정입니다",
+      onClick: () => {}
+    },
+    {
+      date: "2025-01-05",
+      description: "이번주까지 [7의 코드] 7장을 읽고 해당 이론을 활용하여 비즈니스 모델을 수립합니다. 이는 추후 프로젝트에 활용될 예정입니다이번주까지 [7의 코드] 7장을 읽고 해당 이론을 활용하여 비즈니스 모델을 수립합니다. 이는 추후 프로젝트에 활용될 예정입니다이번주까지 [7의 코드] 7장을 읽고 해당 이론을 활용하여 비즈니스 모델을 수립합니다. 이는 추후 프로젝트에 활용될 예정입니다이번주까지 [7의 코드] 7장을 읽고 해당 이론을 활용하여 비즈니스 모델을 수립합니다. 이는 추후 프로젝트에 활용될 예정입니다",
+      onClick: () => {}
+    },
+    {
+      date: "2025-01-05",
+      description: "이번주까지 [7의 코드] 7장을 읽고 해당 이론을 활용하여 비즈니스 모델을 수립합니다. 이는 추후 프로젝트에 활용될 예정입니다",
+      onClick: () => {}
+    },
+    {
+      date: "2025-01-07",
+      description: "이번주까지 [7의 코드] 7장을 읽고 해당 이론을 활용하여 비즈니스 모델을 수립합니다. 이는 추후 프로젝트에 활용될 예정입니다",
+      onClick: () => {}
+    },
+    {
+      date: "2025-01-14",
+      description: "이번주까지 [7의 코드] 7장을 읽고 해당 이론을 활용하여 비즈니스 모델을 수립합니다. 이는 추후 프로젝트에 활용될 예정입니다",
+      onClick: () => {}
+    },
+    {
+      date: "2025-01-27",
+      description: "이번주까지 [7의 코드] 7장을 읽고 해당 이론을 활용하여 비즈니스 모델을 수립합니다. 이는 추후 프로젝트에 활용될 예정입니다",
+      onClick: () => {}
+    },
   ]
+
+  const taskDates = tasks.map(task => new Date(task.date));
+
+  const filteredTasks = tasks.filter(task => {
+    let date = new Date(task.date);
+    return (date.getFullYear() === selectedDate.getFullYear()
+      && date.getMonth() === selectedDate.getMonth()
+      && date.getDate() === selectedDate.getDate()
+    );
+  });
 
   return (
     <div className="w-full h-screen bg-bg-100 flex">
@@ -68,8 +128,8 @@ export default function Main() {
           <h1 className="text-[20px] font-semibold pb-[10px]">
             활동 로그
           </h1>
-          <div>
-            <div className="h-[386px] w-[416px]">
+          <div className="flex gap-[20px] h-[386px]">
+            <div className="h-full w-[416px]">
               <Calendar
                 year={year}
                 month={month}
@@ -80,6 +140,9 @@ export default function Main() {
                 onDateSelect={onDateSelect}
               />
             </div>
+            <TaskCardList
+              taskInfoList={filteredTasks}
+            />
           </div>
         </div>
       </div>

@@ -12,7 +12,7 @@ export function CalendarHeader({ year, month, onPrevMonth, onNextMonth }: {
     return (
       <div className="flex justify-between px-[10px] py-[8px] items-center">
         <div
-          className="border border-[#E2E8F0] rounded-[6px] p-[4px] cursor-pointer"
+          className="border border-[#E2E8F0] rounded-[6px] p-[4px] cursor-pointer hover:bg-[#D2D8E0] transition-all duration-400 ease-in-out"
           onClick={onPrevMonth}
         >
           <img src={LeftArrow} className="w-[16px] h-[16px]" alt="Previous Month" />
@@ -21,7 +21,7 @@ export function CalendarHeader({ year, month, onPrevMonth, onNextMonth }: {
           {monthNames[month]} {year}
         </h1>
         <div
-          className="border border-[#E2E8F0] rounded-[6px] p-[4px] cursor-pointer"
+          className="border border-[#E2E8F0] rounded-[6px] p-[4px] cursor-pointer hover:bg-[#D2D8E0] transition-all duration-400 ease-in-out"
           onClick={onNextMonth}
         >
           <img src={RightArrow} className="w-[16px] h-[16px]" alt="Next Month" />
