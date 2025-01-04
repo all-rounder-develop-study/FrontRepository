@@ -7,13 +7,13 @@ interface CalendarProps {
   year: number;
   month: number;
   assignmentDates: number[];
+  selectedDate: Date;
   onPrevMonth: () => void;
   onNextMonth: () => void;
+  onDateSelect: (selectedDate: Date) => void;
 }
 
-export default function Calendar({ year, month, assignmentDates, onPrevMonth, onNextMonth }: CalendarProps) {
-  const today = new Date();
-
+export default function Calendar({ year, month, assignmentDates, selectedDate, onPrevMonth, onNextMonth, onDateSelect }: CalendarProps) {
   const firstDayOfMonth = new Date(year, month, 1);
   const lastDayOfMonth = new Date(year, month + 1, 0);
 
@@ -23,8 +23,8 @@ export default function Calendar({ year, month, assignmentDates, onPrevMonth, on
 
   const daysInMonth = Array.from({ length: lastDayOfMonth.getDate() }, (_, i) => i + 1);
 
-  function isToday(year: Number, month: Number, date: any) {
-    return today.getFullYear() === year && today.getMonth() === month && today.getDate() == date;
+  function isSelected(year: Number, month: Number, date: any) {
+    return selectedDate.getFullYear() === year && selectedDate.getMonth() === month && selectedDate.getDate() === date;
   }
 
   function hasAssignment(date: any) {
@@ -60,7 +60,7 @@ export default function Calendar({ year, month, assignmentDates, onPrevMonth, on
         ))}
 
         {daysInMonth.map((day, i) => (
-          (isToday(year, month, day))
+          (isSelected(year, month, day))
           ?
           <CalendarCell
             key={`prev-${i}`}
@@ -74,6 +74,7 @@ export default function Calendar({ year, month, assignmentDates, onPrevMonth, on
             text={String(day)}
             bgColor="bg-blue-200"
             textColor="text-foreground"
+            onClick={() => {onDateSelect(new Date(year, month, day))}}
           />
           :
           <CalendarCell

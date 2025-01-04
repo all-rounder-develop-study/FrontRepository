@@ -13,7 +13,6 @@ export default function Main() {
     { "endDate": "2024-01-20", "endTime": "11 : 59", "contents": "이번주까지 [7의 코드] 7장을 읽고 해당 이론을 활용하여 비즈니스 모델을 수립합니다. 이는 추후 프로젝트에 활용될 예정입니다.", "onTaskButton": handleTask1 },
     { "endDate": "2024-01-27", "endTime": "11 : 59", "contents": "이번주까지 [7의 코드] 8장을 읽고 해당 이론을 활용하여 자바 스터디를 진행합니다. 백엔드 무림고수 김나연이 참여하여 스터디를 주도해나갈 예정입니다. ", "onTaskButton": handleTask2 }
   ];
-  //taskData = [];
 
   const today = new Date();
   const currentMonth = today.getMonth();
@@ -21,6 +20,7 @@ export default function Main() {
 
   const [year, setYear] = useState(currentYear);
   const [month, setMonth] = useState(currentMonth);
+  const [selectedDate, setSelectedDate] = useState(today);
 
   const handlePrevMonth = () => {
     if (month === 0) {
@@ -29,7 +29,6 @@ export default function Main() {
     } else {
       setMonth(month - 1);
     }
-    console.log(month);
   };
 
   const handleNextMonth = () => {
@@ -39,8 +38,11 @@ export default function Main() {
     } else {
       setMonth(month + 1);
     }
-    console.log(month);
   };
+
+  const onDateSelect = (date: Date) => {
+    setSelectedDate(date);
+  }
 
   const taskDates = [
     1, 2, 4, 5, 7, 14, 27
@@ -72,11 +74,12 @@ export default function Main() {
                 year={year}
                 month={month}
                 assignmentDates={taskDates}
+                selectedDate={selectedDate}
                 onPrevMonth={handlePrevMonth}
                 onNextMonth={handleNextMonth}
+                onDateSelect={onDateSelect}
               />
             </div>
-            <></>
           </div>
         </div>
       </div>
