@@ -3,10 +3,22 @@ import AssignmentCardList from "../components/main/AssignmentCardList";
 import Calendar from "../components/main/Calendar";
 import { useState } from "react";
 import TaskCardList from "../components/main/TaskCardList";
+import ToastContainer from "../components/commons/ToastContainer";
 
 export default function Main() {
 
-  const handleLogout = () => { console.log("로그아웃 여기에 구현하면 될듯요~~"); }
+  const [addToast, setAddToast] = useState<((message: string) => void) | null>(null);
+
+  const showToast = (message: string) => {
+    if (addToast) {
+      addToast(message);
+    }
+  }
+
+  const handleLogout = () => {
+    console.log("로그아웃 여기에 구현하면 될듯요~~");
+    showToast("로그아웃이 실패했습니다!")
+  }
   const handleTask1 = () => { console.log("첫 번째 과제하러 이동"); }
   const handleTask2 = () => { console.log("두 번째 과제하러 이동"); }
 
@@ -146,6 +158,9 @@ export default function Main() {
           </div>
         </div>
       </div>
+      <ToastContainer
+        onAddToast={(addToast) => (setAddToast(() => addToast))}
+      />
     </div>
   );
 }
